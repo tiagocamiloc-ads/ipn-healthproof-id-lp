@@ -22,6 +22,13 @@
 
     --card-shadow: rgba(10,40,35,.16) 0px 6px 30px 0px;
     --btn-shadow: rgba(10,33,30,.14) 0px 1px 12px 0px;
+
+    --feat-bg:#fdf1ee;
+    --feat-card-bg:#ffffff;
+    --feat-shadow: rgba(35,44,140,.08) 0px 4px 64px 0px;
+    --feat-title:#1d2473;
+    --feat-text:#1d2473;
+    --feat-link:#3d4cf2;
   }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
@@ -29,6 +36,8 @@
       --line:#1f3b3c; --cta:#2bb8bd; --cta-hover:#3fd0d6;
       --card-shadow: rgba(0,0,0,.4) 0px 6px 30px 0px;
       --btn-shadow: rgba(0,0,0,.4) 0px 1px 12px 0px;
+      --feat-bg:#17110f; --feat-card-bg:#102422; --feat-shadow: rgba(0,0,0,.4) 0px 6px 30px 0px;
+      --feat-title:#e7ece9; --feat-text:#9fb0ab; --feat-link:#2bb8bd;
     }
   }
   :root[data-theme="dark"]{
@@ -36,6 +45,8 @@
     --line:#1f3b3c; --cta:#2bb8bd; --cta-hover:#3fd0d6;
     --card-shadow: rgba(0,0,0,.4) 0px 6px 30px 0px;
     --btn-shadow: rgba(0,0,0,.4) 0px 1px 12px 0px;
+    --feat-bg:#17110f; --feat-card-bg:#102422; --feat-shadow: rgba(0,0,0,.4) 0px 6px 30px 0px;
+    --feat-title:#e7ece9; --feat-text:#9fb0ab; --feat-link:#2bb8bd;
   }
 
   *{box-sizing:border-box;min-width:0;}
@@ -135,7 +146,7 @@
   }
   .hero h1{font-size:clamp(30px,3.6vw,44px);font-weight:800;line-height:1.14;letter-spacing:.2px;max-width:600px;text-wrap:balance;}
   .hero p.lead{font-size:19px;font-weight:300;color:rgba(255,255,255,.85);max-width:520px;margin-top:22px;line-height:1.6;}
-  @media(max-width:520px){.hero h1{font-size:30px;} .hero p.lead{font-size:16px;}}
+  @media(max-width:520px){.hero h1{font-size:30px;}}
 
   .capture{display:flex;margin-top:34px;max-width:500px;}
   .capture input{
@@ -158,7 +169,7 @@
   }
   @media(max-width:480px){
     .capture{flex-direction:column;max-width:100%;}
-    .capture input{border-radius:8px;width:100%;}
+    .capture input{flex:none;border-radius:8px;width:100%;height:52px;}
     .capture-arrow{margin-left:0;margin-top:10px;clip-path:none;border-radius:8px;width:100%;justify-content:center;padding:0 24px;}
     .capture-arrow:hover{clip-path:none;padding:0 24px;}
   }
@@ -167,6 +178,7 @@
   /* stats inside hero */
   .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.12);padding:34px 0;}
   .hero-stats div{padding:0 20px;text-align:left;}
+  @media(max-width:900px){.hero-stats div{text-align:center;}}
   @media(max-width:640px){.hero-stats{grid-template-columns:1fr;gap:18px;}}
   .hero-stats b{display:block;font-size:44px;font-weight:700;color:var(--stat);letter-spacing:.2px;line-height:1;}
   .hero-stats span{font-size:16px;font-weight:300;color:rgba(255,255,255,.82);display:block;margin-top:8px;line-height:1.4;}
@@ -212,13 +224,18 @@
   .section-head h2{font-size:clamp(24px,3vw,33px);font-weight:800;max-width:640px;line-height:1.2;}
   .section-head p{color:var(--ink-soft);max-width:58ch;margin-top:14px;font-size:16px;font-weight:400;}
 
-  .grid4{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:48px;}
-  @media(max-width:700px){.grid4{grid-template-columns:1fr;}}
-  .feature{background:var(--paper-raised);border-radius:6px;padding:44px 32px 30px;box-shadow:var(--card-shadow);transition:transform .25s ease,box-shadow .25s ease;}
+  #oquefazemos{background:var(--feat-bg);}
+  .grid4{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:48px;}
+  @media(max-width:900px){.grid4{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:640px){.grid4{grid-template-columns:1fr;gap:20px;}}
+  .feature{background:var(--feat-card-bg);border-radius:24px;padding:24px;box-shadow:var(--feat-shadow);text-align:left;transition:transform .25s ease,box-shadow .25s ease;}
   .feature:hover{transform:translateY(-5px);}
-  .feature .ico{width:42px;height:42px;border-radius:9px;background:var(--tint);color:var(--cta);display:flex;align-items:center;justify-content:center;font-weight:800;margin-bottom:18px;}
-  .feature h3{font-size:18px;font-weight:800;margin-bottom:10px;}
-  .feature p{margin:0;font-size:15px;color:var(--ink-soft);line-height:1.6;}
+  .feature .ico-badge{width:100px;height:92px;display:block;margin-bottom:6px;}
+  .feature h3{font-size:22px;font-weight:800;color:var(--feat-title);margin:0 0 12px;line-height:1.25;}
+  .feature p{margin:0;font-size:15.5px;color:var(--feat-text);opacity:.82;line-height:1.6;}
+  .feature .learn-more{display:inline-flex;align-items:center;gap:5px;margin-top:16px;font-size:14px;font-weight:700;color:var(--feat-link);text-decoration:none;}
+  .feature .learn-more svg{width:12px;height:12px;transition:transform .2s ease;}
+  .feature:hover .learn-more svg{transform:translateX(3px);}
 
   /* process */
   .process{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:52px;}
@@ -351,12 +368,20 @@
     .announce .x{right:8px;font-size:13px;}
     .section-head h2{font-size:24px;}
     .section-tag{font-size:11.5px;}
-    .feature{padding:26px 22px 22px;}
+    .feature{padding:22px;}
     .why-card{padding:22px 20px 20px;}
     .testi-card{padding:24px 20px 20px;}
     .platform-card{padding:20px 16px;}
     .feat-head{padding:16px 18px;}
     .feat-body-inner{padding:0 18px 18px;}
+    .section-head p{font-size:17px;}
+    .feature p{font-size:16.5px;}
+    .why-card p{font-size:15.5px;}
+    .testi-card p{font-size:15.5px;}
+    .step p{font-size:15px;}
+    .faq p{font-size:15.5px;}
+    .platform-card p{font-size:15.5px;}
+    .feat-body-inner p{font-size:16px;}
     .grid4,.why-grid,.platform-grid,.process{gap:16px;}
     .btn{padding:11px 20px;font-size:12px;}
     .car-nav{width:30px;height:30px;font-size:12px;}
@@ -446,10 +471,56 @@
       <p>Não somos um fornecedor de engenharia genérico: a nossa equipa de I&amp;D trabalha lado a lado com quem depois vai testar, validar e certificar o que constrói.</p>
     </div>
     <div class="grid4">
-      <div class="feature"><div class="ico">01</div><h3>Sistemas Embebidos</h3><p>Desenvolvimento de hardware e software embebido para dispositivos médicos, com rastreabilidade desde o primeiro requisito.</p></div>
-      <div class="feature"><div class="ico">02</div><h3>Robótica Colaborativa</h3><p>Soluções de automação aplicada à saúde, com mais de 15 anos de experiência em robótica industrial adaptada ao contexto clínico.</p></div>
-      <div class="feature"><div class="ico">03</div><h3>Internet of Bodies &amp; IA aplicada à saúde</h3><p>Sistemas inteligentes e wearables, com o enquadramento regulamentar já considerado desde a fase de conceito.</p></div>
-      <div class="feature"><div class="ico">04</div><h3>Digital Twins e Simulação</h3><p>Modelação e simulação para telemedicina e telereabilitação, validadas com profissionais de saúde reais antes de qualquer teste em contexto hospitalar.</p></div>
+      <div class="feature">
+        <svg class="ico-badge" viewBox="0 0 112 104" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="46" cy="62" r="46" fill="#F0F1FF"/>
+          <circle cx="66" cy="34" r="36" stroke="#A1A9FF" stroke-width="2"/>
+          <rect x="34" y="46" width="28" height="28" rx="4" stroke="#3D4CF2" stroke-width="3"/>
+          <rect x="42" y="54" width="12" height="12" rx="2" stroke="#3D4CF2" stroke-width="3"/>
+          <path d="M40 46V38M56 46V38M40 82V74M56 82V74M34 54H26M34 66H26M70 54H62M70 66H62" stroke="#3D4CF2" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <h3>Sistemas Embebidos</h3>
+        <p>Desenvolvimento de hardware e software embebido para dispositivos médicos, com rastreabilidade desde o primeiro requisito.</p>
+        <a class="learn-more" href="#falar">Saiba mais <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 1L9 6L3 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="feature">
+        <svg class="ico-badge" viewBox="0 0 112 104" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="46" cy="62" r="46" fill="#FFF2F0"/>
+          <circle cx="66" cy="34" r="36" stroke="#FFBBAD" stroke-width="2"/>
+          <circle cx="38" cy="42" r="5" stroke="#FF6E52" stroke-width="3"/>
+          <path d="M38 47V60" stroke="#FF6E52" stroke-width="3" stroke-linecap="round"/>
+          <path d="M38 60L58 68" stroke="#FF6E52" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="58" cy="68" r="4" stroke="#FF6E52" stroke-width="3"/>
+          <path d="M58 72L52 80M58 72L64 80" stroke="#FF6E52" stroke-width="3" stroke-linecap="round"/>
+          <path d="M26 82H70" stroke="#FF6E52" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <h3>Robótica Colaborativa</h3>
+        <p>Soluções de automação aplicada à saúde, com mais de 15 anos de experiência em robótica industrial adaptada ao contexto clínico.</p>
+        <a class="learn-more" href="#falar">Saiba mais <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 1L9 6L3 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="feature">
+        <svg class="ico-badge" viewBox="0 0 112 104" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="46" cy="62" r="46" fill="#F4F0FF"/>
+          <circle cx="66" cy="34" r="36" stroke="#B8A1FF" stroke-width="2"/>
+          <rect x="30" y="40" width="36" height="44" rx="10" stroke="#7B4FFF" stroke-width="3"/>
+          <path d="M38 62H44L47 54L51 70L54 62H58" stroke="#7B4FFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3>Internet of Bodies &amp; IA aplicada à saúde</h3>
+        <p>Sistemas inteligentes e wearables, com o enquadramento regulamentar já considerado desde a fase de conceito.</p>
+        <a class="learn-more" href="#falar">Saiba mais <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 1L9 6L3 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="feature">
+        <svg class="ico-badge" viewBox="0 0 112 104" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="46" cy="62" r="46" fill="#FCF2D4"/>
+          <circle cx="66" cy="34" r="36" stroke="#FCD256" stroke-width="2"/>
+          <path d="M36 46L48 40L60 46V62L48 68L36 62V46Z" stroke="#FCB80D" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M36 46L48 52L60 46M48 52V68" stroke="#FCB80D" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M52 58L64 52L76 58V74L64 80L52 74V58Z" stroke="#FCB80D" stroke-width="2.4" stroke-linejoin="round" opacity=".55"/>
+        </svg>
+        <h3>Digital Twins e Simulação</h3>
+        <p>Modelação e simulação para telemedicina e telereabilitação, validadas com profissionais de saúde reais antes de qualquer teste em contexto hospitalar.</p>
+        <a class="learn-more" href="#falar">Saiba mais <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 1L9 6L3 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
     </div>
   </div>
 </section>
